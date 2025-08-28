@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from seo3 import HybridSEOSystem
+from .seo3 import HybridSEOSystem
 from dotenv import load_dotenv
 import os
 
