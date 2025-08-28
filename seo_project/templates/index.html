@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Keyword Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #results {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .result {
+            margin-bottom: 20px;
+        }
+        .result a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .result a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>SEO Keyword Search</h1>
+    <form id="searchForm" method="POST">
+        <input type="text" name="keywords" placeholder="Enter keywords" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <div id="results">
+        {% if results %}
+            <h2>Search Results</h2>
+            {% for title, link, description in results %}
+                <div class="result">
+                    <p><strong>{{ title }}</strong><br>
+                    <a href="{{ link }}" target="_blank">{{ link }}</a><br>
+                    {{ description }}</p>
+                </div>
+            {% endfor %}
+        {% elif not error %}
+            <p style="text-align:center;">No results found. Try a different keyword.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
